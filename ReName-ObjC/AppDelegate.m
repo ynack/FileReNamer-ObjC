@@ -532,13 +532,13 @@
             dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             
             dispatch_async(q_global, ^{
-                for(int i = roop; i < count; i++)
+                for(int i = self->roop; i < count; i++)
                 {
-                    if(canceled)
+                    if(self->canceled)
                     {
-                        roop = i;
-                        message = @"変換を中止しました";
-                        [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                        self->roop = i;
+                        self->message = @"変換を中止しました";
+                        [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                         break;
                     }
                     
@@ -560,7 +560,7 @@
                         if([fileName rangeOfString:include].location != NSNotFound)
                         {
                             
-                            if(_Digit_Check.state == YES)
+                            if(self.Digit_Check.state == YES)
                             {
                                 [self Column_Sort:adjustFileNumber];
                             }
@@ -606,26 +606,26 @@
                                     prefix = [NSString stringWithFormat:@"%d", adjustFileNumber];
                                 }
                                 //NSLog(@"%@",prefix);
-                                if(_prefix_Btn.state == YES)
+                                if(self.prefix_Btn.state == YES)
                                 {
-                                    if(_not_underbar_Btn.state == YES)
+                                    if(self.not_underbar_Btn.state == YES)
                                     {
-                                        distSerial = [NSString stringWithFormat:@"%@%@",prefix,rename];
+                                        self->distSerial = [NSString stringWithFormat:@"%@%@",prefix,self->rename];
                                     }
                                     else
                                     {
-                                        distSerial = [NSString stringWithFormat:@"%@_%@",prefix,rename];
+                                        self->distSerial = [NSString stringWithFormat:@"%@_%@",prefix,self->rename];
                                     }
                                 }
-                                else if(_suffix_Btn.state == YES)
+                                else if(self.suffix_Btn.state == YES)
                                 {
-                                    if(_not_underbar_Btn.state == YES)
+                                    if(self.not_underbar_Btn.state == YES)
                                     {
-                                        distSerial = [NSString stringWithFormat:@"%@%@",rename,prefix];
+                                        self->distSerial = [NSString stringWithFormat:@"%@%@",self->rename,prefix];
                                     }
                                     else
                                     {
-                                        distSerial = [NSString stringWithFormat:@"%@_%@",rename,prefix];
+                                        self->distSerial = [NSString stringWithFormat:@"%@_%@",self->rename,prefix];
                                     }
                                 }
                             }
@@ -633,8 +633,8 @@
                             if(![fm fileExistsAtPath:output] && (Comp != 0))
                             {
                                 //書出し先フォルダが無く、ソースと書出し先が違う
-                                AlrtMss = [self alertMessage:@"書出し先フォルダが存在しません" Text2:@"作成します" FirstBtn:@"OK"];
-                                if(AlrtMss == NSAlertFirstButtonReturn)
+                                self->AlrtMss = [self alertMessage:@"書出し先フォルダが存在しません" Text2:@"作成します" FirstBtn:@"OK"];
+                                if(self->AlrtMss == NSAlertFirstButtonReturn)
                                 {
                                     /*  フォルダを作る処理   */
                                     [self mkdir:output];
@@ -663,45 +663,45 @@
                             //NSLog(@"distSerial = %@",distSerial);
                             //NSLog(@"fileName = %@", fileName);
                             
-                            Old_filePath = [NSString stringWithFormat:@"%@/%@%@",origin,fileName,file_ext];
-                            New_filePath = [NSString stringWithFormat:@"%@%@%@",output_s,distSerial,file_ext];
+                            self->Old_filePath = [NSString stringWithFormat:@"%@/%@%@",origin,fileName,file_ext];
+                            self->New_filePath = [NSString stringWithFormat:@"%@%@%@",output_s,self->distSerial,file_ext];
 
                             //[self appendText:New_filePath];
-                            [self performSelectorOnMainThread:@selector(appendText:) withObject:New_filePath waitUntilDone:NO];
+                            [self performSelectorOnMainThread:@selector(appendText:) withObject:self->New_filePath waitUntilDone:NO];
                             
                             /*  ここにスレッドをスリープさせる記述  */
-                            if(_leave_Origin_Check.state == YES)
+                            if(self.leave_Origin_Check.state == YES)
                             {
                                 //元ファイルを残す（上書きも回避）
-                                if([fm fileExistsAtPath:New_filePath])
+                                if([fm fileExistsAtPath:self->New_filePath])
                                 {
                                     [NSThread sleepForTimeInterval:0.3];
-                                    message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
-                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                    self->message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
+                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                                 }
                                 else
                                 {
-                                    [fm copyItemAtPath:Old_filePath toPath:New_filePath error:&error];
+                                    [fm copyItemAtPath:self->Old_filePath toPath:self->New_filePath error:&error];
                                     [NSThread sleepForTimeInterval:0.3];
-                                    message = [NSString stringWithFormat:@"......完了\n"];
-                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                    self->message = [NSString stringWithFormat:@"......完了\n"];
+                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                                 }
                             }
                             else
                             {
                                 //元ファイル残さない
-                                if([fm fileExistsAtPath:New_filePath])
+                                if([fm fileExistsAtPath:self->New_filePath])
                                 {
                                     [NSThread sleepForTimeInterval:0.3];
-                                    message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
-                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                    self->message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
+                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                                 }
                                 else
                                 {
-                                    [fm moveItemAtPath:Old_filePath toPath:New_filePath error:&error];
+                                    [fm moveItemAtPath:self->Old_filePath toPath:self->New_filePath error:&error];
                                     [NSThread sleepForTimeInterval:0.3];
-                                    message = [NSString stringWithFormat:@"......完了\n"];
-                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                    self->message = [NSString stringWithFormat:@"......完了\n"];
+                                    [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                                 }
                             }
                             [NSThread sleepForTimeInterval:0.1];
@@ -713,14 +713,14 @@
                         
                         if(noConst == count)
                         {
-                            message = @"指定された文字列は見つかりませんでした";
+                            self->message = @"指定された文字列は見つかりませんでした";
                             return;
                         }
                     }
                     else
                     {
                         //以下の文字列を〜で文字列が指定されていないとき
-                        if(_Digit_Check.state == YES)
+                        if(self->_Digit_Check.state == YES)
                         {
                             [self Column_Sort:adjustFileNumber];
                         }
@@ -765,33 +765,33 @@
                                 prefix = [NSString stringWithFormat:@"%d", adjustFileNumber];
                             }
                             
-                            if(_prefix_Btn.state == YES)
+                            if(self->_prefix_Btn.state == YES)
                             {
-                                if(_not_underbar_Btn.state == YES)
+                                if(self->_not_underbar_Btn.state == YES)
                                 {
-                                    distSerial = [NSString stringWithFormat:@"%@%@",prefix,rename];
+                                    self->distSerial = [NSString stringWithFormat:@"%@%@",prefix,self->rename];
                                 }
                                 else
                                 {
-                                    distSerial = [NSString stringWithFormat:@"%@_%@",prefix,rename];
+                                    self->distSerial = [NSString stringWithFormat:@"%@_%@",prefix,self->rename];
                                 }
                             }
-                            else if(_suffix_Btn.state == YES)
+                            else if(self->_suffix_Btn.state == YES)
                             {
-                                if(_not_underbar_Btn.state == YES)
+                                if(self->_not_underbar_Btn.state == YES)
                                 {
-                                    distSerial = [NSString stringWithFormat:@"%@%@",rename,prefix];
+                                    self->distSerial = [NSString stringWithFormat:@"%@%@",self->rename,prefix];
                                 }
                                 else
                                 {
-                                    distSerial = [NSString stringWithFormat:@"%@_%@",rename,prefix];
+                                    self->distSerial = [NSString stringWithFormat:@"%@_%@",self->rename,prefix];
                                 }
                             }
                             if(![fm fileExistsAtPath:output] && (Comp != 0))
                             {
                                 //書出し先フォルダが無く、ソースと書出し先が違う
-                                AlrtMss = [self alertMessage:@"書出し先フォルダが存在しません" Text2:@"作成します" FirstBtn:@"OK"];
-                                if(AlrtMss == NSAlertFirstButtonReturn)
+                                self->AlrtMss = [self alertMessage:@"書出し先フォルダが存在しません" Text2:@"作成します" FirstBtn:@"OK"];
+                                if(self->AlrtMss == NSAlertFirstButtonReturn)
                                 {
                                     /*  フォルダを作る処理   */
                                     [self mkdir:output];
@@ -817,56 +817,56 @@
                                 //コピーしてリネーム
                             }
                         }
-                        Old_filePath = [NSString stringWithFormat:@"%@/%@%@",origin,fileName,file_ext];
-                        New_filePath = [NSString stringWithFormat:@"%@%@%@",output_s,distSerial,file_ext];
+                        self->Old_filePath = [NSString stringWithFormat:@"%@/%@%@",origin,fileName,file_ext];
+                        self->New_filePath = [NSString stringWithFormat:@"%@%@%@",output_s,self->distSerial,file_ext];
 
-                        [self performSelectorOnMainThread:@selector(appendText:) withObject:New_filePath waitUntilDone:NO];
+                        [self performSelectorOnMainThread:@selector(appendText:) withObject:self->New_filePath waitUntilDone:NO];
 
-                        if(_leave_Origin_Check.state == YES)
+                        if(self->_leave_Origin_Check.state == YES)
                         {
                             //元ファイルを残す（上書きも回避）
-                            if([fm fileExistsAtPath:New_filePath])
+                            if([fm fileExistsAtPath:self->New_filePath])
                             {
                                 [NSThread sleepForTimeInterval:0.3];
-                                message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
-                                [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                self->message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
+                                [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                             }
                             else
                             {
-                                [fm copyItemAtPath:Old_filePath toPath:New_filePath error:&error];
+                                [fm copyItemAtPath:self->Old_filePath toPath:self->New_filePath error:&error];
                                 [NSThread sleepForTimeInterval:0.3];
-                                message = [NSString stringWithFormat:@"......完了\n"];
-                                [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                self->message = [NSString stringWithFormat:@"......完了\n"];
+                                [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                             }
                         }
                         else
                         {
                             //元ファイル残さない
-                            if([fm fileExistsAtPath:New_filePath])
+                            if([fm fileExistsAtPath:self->New_filePath])
                             {
                                 [NSThread sleepForTimeInterval:0.3];
-                                message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
-                                [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                self->message = [NSString stringWithFormat:@"......同名のファイルが既にあります\n"];
+                                [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                             }
                             else
                             {
-                                [fm moveItemAtPath:Old_filePath toPath:New_filePath error:&error];
+                                [fm moveItemAtPath:self->Old_filePath toPath:self->New_filePath error:&error];
                                 [NSThread sleepForTimeInterval:0.3];
-                                message = [NSString stringWithFormat:@"......完了\n"];
-                                [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                                self->message = [NSString stringWithFormat:@"......完了\n"];
+                                [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                             }
                         }
                         [NSThread sleepForTimeInterval:0.1];
                         if([dirFileNumber[i] isEqual:@-1])
                         {
-                            prf++;
+                            self->prf++;
                         }
                     }
                 }
-                if(canceled == NO)
+                if(self->canceled == NO)
                 {
-                    message = [NSString stringWithFormat:@"変換が終了しました\n"];
-                    [self performSelectorOnMainThread:@selector(appendText:) withObject:message waitUntilDone:NO];
+                    self->message = [NSString stringWithFormat:@"変換が終了しました\n"];
+                    [self performSelectorOnMainThread:@selector(appendText:) withObject:self->message waitUntilDone:NO];
                 }
             });
             /*ここで非同期処理終わり   */
@@ -1407,7 +1407,7 @@
     [opPanel setCanCreateDirectories:YES];
     [opPanel setPrompt:NSLocalizedString(@"選択", @"")];
     [opPanel setMessage:NSLocalizedString(@"ファイル/フォルダ選択", @"")];
-    [opPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){if(result == NSModalResponseOK){ [_Origin_Path setStringValue:opPanel.URL.path];}}];
+    [opPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){if(result == NSModalResponseOK){ [self.Origin_Path setStringValue:opPanel.URL.path];}}];
 }
 
 - (IBAction)fldSelectB:(id)sender
@@ -1419,7 +1419,7 @@
     [opPanel setCanCreateDirectories:YES];
     [opPanel setPrompt:NSLocalizedString(@"選択", @"")];
     [opPanel setMessage:NSLocalizedString(@"ファイル/フォルダ選択", @"")];
-    [opPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){if(result == NSModalResponseOK){ [_Output_Path setStringValue:opPanel.URL.path];}}];
+    [opPanel beginSheetModalForWindow:self.window completionHandler:^(NSInteger result){if(result == NSModalResponseOK){ [self.Output_Path setStringValue:opPanel.URL.path];}}];
 }
 
 @end
