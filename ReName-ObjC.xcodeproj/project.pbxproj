@@ -11,6 +11,7 @@
 		338328D52031DAFF005D6427 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 338328D42031DAFF005D6427 /* main.m */; };
 		338328D72031DAFF005D6427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 338328D62031DAFF005D6427 /* Assets.xcassets */; };
 		338328DA2031DAFF005D6427 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 338328D82031DAFF005D6427 /* MainMenu.xib */; };
+		A713273A2032FB3B006C4ADA /* DragDrop.m in Sources */ = {isa = PBXBuildFile; fileRef = A71327392032FB3B006C4ADA /* DragDrop.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,8 @@
 		338328D62031DAFF005D6427 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		338328D92031DAFF005D6427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		338328DB2031DAFF005D6427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A71327382032FB3B006C4ADA /* DragDrop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDrop.h; sourceTree = "<group>"; };
+		A71327392032FB3B006C4ADA /* DragDrop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDrop.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 				338328D62031DAFF005D6427 /* Assets.xcassets */,
 				338328D82031DAFF005D6427 /* MainMenu.xib */,
 				338328DB2031DAFF005D6427 /* Info.plist */,
+				A71327382032FB3B006C4ADA /* DragDrop.h */,
+				A71327392032FB3B006C4ADA /* DragDrop.m */,
 				338328D32031DAFF005D6427 /* Supporting Files */,
 			);
 			path = "ReName-ObjC";
@@ -97,7 +102,7 @@
 		338328C52031DAFF005D6427 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = Yosuke.Nakayama;
 				TargetAttributes = {
 					338328CC2031DAFF005D6427 = {
@@ -112,6 +117,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -143,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				338328D52031DAFF005D6427 /* main.m in Sources */,
+				A713273A2032FB3B006C4ADA /* DragDrop.m in Sources */,
 				338328D22031DAFF005D6427 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,7 +177,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -178,7 +187,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -217,7 +231,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -225,7 +241,12 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -252,11 +273,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XM663NRHRM;
 				INFOPLIST_FILE = "ReName-ObjC/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Fuji-Media-Technology-Inc..ReName-ObjC";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "yosuke.nakayama.ReName-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -265,11 +288,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = XM663NRHRM;
 				INFOPLIST_FILE = "ReName-ObjC/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Fuji-Media-Technology-Inc..ReName-ObjC";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "yosuke.nakayama.ReName-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -293,6 +318,7 @@
 				338328E02031DAFF005D6427 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
